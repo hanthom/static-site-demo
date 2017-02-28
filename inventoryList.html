@@ -10,5 +10,16 @@
   <body>
     <h1> Test Inventory </h1>
 
+    <div id='gotoHome'>
+      <a href="index.html">
+        <button> Home </button>
+      </a>
+    </div>
+
+    <script type="text/javascript">
+      mixpanel.track_links("#gotoHome a", "Goto Home", {
+            "referrer": document.referrer
+      });
+    </script>
   </body>
 </html>
