@@ -9,38 +9,41 @@
   </head>
   <body>
     <h1> Test Turnstile </h1>
-    <div id="fourLiner">
+    <div>
       <h2> Complete Form </h2>
       <form id="testForm" onsubmit="submitForm()">
         Full Name: <input type="text" name="fullname">
         Email: <input type="email" name="email">
-        Phone Number: <input type="number" name="phoneNumber">
-        <a href="inventoryList.html">
-          <button type="Submit">Submit</button>
-        </a>
+        Phone Number: <input type="text" name="phoneNumber">
+        <button type="Submit">Submit</button>
       </form>
     </div>
 
+    <div id="fourLiner">
+      <a href="inventoryList.html">
+        <button> To Inventory </button>
+      </a>
+    </div>
 
 
     <script type="text/javascript">
-      // mixpanel.track_links("#fourLiner a", "Submitted Four Liner", {
-      //     "referrer": document.referrer
-      // });
+      mixpanel.track_links("#fourLiner a", "Submitted Four Liner", {
+          "referrer": document.referrer
+      });
       mixpanel.init('ea035528596498f2fd27294ef3576c78', {
         loaded: function(mixpanel) {
           distinct_id = mixpanel.get_distinct_id();
-          // mixpanel.identify(distinct_id);
           alert(distinct_id);
         }
       });
       submitForm = function() {
-        alert(document.getElementById('testForm').fullname.value);
-        // mixpanel.people.set({
-        //   "name": document.getElementById('testForm').fullname.value,
-        //   "$email": document.getElementById('testForm').email.value,
-        //   "mainphone": document.getElementById('testForm').phoneNumber.value
-        // });
+        mixpanel.identify(distinct_id);
+        alert(distinct_id);
+        mixpanel.people.set({
+          "name": document.getElementById('testForm').fullname.value,
+          "$email": document.getElementById('testForm').email.value,
+          "mainphone": document.getElementById('testForm').phoneNumber.value
+        });
       };
   </script>
   </body>
